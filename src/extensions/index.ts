@@ -1,5 +1,6 @@
 import { any } from "./any";
 import { asReadonly } from "./asReadonly";
+import { toArray } from "./toArray";
 
 export { };
 
@@ -23,6 +24,15 @@ declare global {
          * @memberof Array
          */
         asReadonly<T>(this: Array<T>): ReadonlyArray<T>;
+        /**
+         * 要素を配列に変換します。
+         *
+         * @template T
+         * @param {Array<T>} this
+         * @return {*}  {Array<T>}
+         * @memberof Array
+         */
+        toArray<T>(this: Array<T>): Array<T>;
     }
 
     interface ReadonlyArray<T> {
@@ -44,6 +54,15 @@ declare global {
          * @memberof ReadonlyArray
          */
         asReadonly<T>(this: ReadonlyArray<T>): ReadonlyArray<T>;
+        /**
+         * 要素を配列に変換します。
+         *
+         * @template T
+         * @param {ReadonlyArray<T>} this
+         * @return {*}  {Array<T>}
+         * @memberof ReadonlyArray
+         */
+        toArray<T>(this: ReadonlyArray<T>): Array<T>;
     }
 }
 
@@ -53,4 +72,8 @@ if (!Array.prototype.any) {
 
 if (!Array.prototype.asReadonly) {
     Array.prototype.asReadonly = asReadonly;
+}
+
+if (!Array.prototype.toArray) {
+    Array.prototype.toArray = toArray;
 }
